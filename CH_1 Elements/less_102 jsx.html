@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REACT Less 1</title>
+    <title>REACT Less 2 | JSX</title>
 
         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <!-- BABEL A JS COMPILER FROM TAGGED BASE TO CODE -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
     <div id="react"></div>
+    <hr>
+    <div id="react2"></div>
     <script>
         let ul= React.createElement(
             'ul', //element
@@ -21,9 +25,30 @@
             React.createElement('li', null, 'Wednesday'), //value
             React.createElement('li', null, 'Thursday'), //value
             );
+
         ReactDOM.render(
             ul,
             document.getElementById('react')
+        )
+    </script>
+
+    <script type="text/babel">
+        let type = "cerchio";
+        let size__radius = 18;
+        let producer = "michelin";
+        let customer__name = "John";
+
+
+        ReactDOM.render(
+            <ul>
+                <h3>THIS WAS ADDED WITH JSX</h3>
+                <li>Tipo: {type}</li>
+                <li>Raggio: {size__radius}</li>
+                <li>Produttore: {producer}</li>
+                <li>Nome cliente: {customer__name}</li>
+                <li>Name to uppercase: {customer__name.toUpperCase()}</li>
+            </ul>,
+            document.getElementById('react2')
         )
     </script>
 </body>
