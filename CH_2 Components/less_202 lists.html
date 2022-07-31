@@ -39,6 +39,7 @@
         }
         .content{
             width: 80%;
+            min-height: 60vh;
             margin: 0 auto;
         }
         footer{
@@ -48,6 +49,9 @@
         footer div{
             width: 80%;
             margin: 0 auto;
+        }
+        h1{
+            text-align: center;
         }
         .app{
             height: 100vh;
@@ -87,7 +91,11 @@
                     <div>
                         <h2>Categories</h2>
                         <ul>
-                            {categories.map()}
+                            {
+                            props.categories.map((category) => (
+                                <li key={category.id}> {category.title} </li>
+                                ))
+                            }
                         </ul>
                     </div>
                 </section>
@@ -111,13 +119,22 @@
             'Living Room',
             'Mechanic',
             'Garden',
-            'Computers'
+            'Computers',
+            'mobiles'
         ]
+        //because REACT wants a key for arrays that could be used in the future i can't
+        //use an index 'cause array content could be in an other order
+        //instead i can TRANSFORM INTO OBJECT
+        const categoryObject = categories.map((category, i) => ({
+            id: i,
+            title: category,
+        })) 
+
         function App() {
             return (
-            <div class="app">
+            <div className="app">
                 <Header />
-                <Main name="Andy" />
+                <Main name="Andy" categories={categoryObject}/>
                 <Footer adj="Love" year={new Date().getFullYear()} />
             </div>
             );
