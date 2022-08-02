@@ -1,8 +1,16 @@
+/* 
+  TITLE: INTRO TO HOOKS
+  TODO: Play arround with some lists and buttons
+
+*/
+
 import { useState, useEffect } from 'react';
 
-/* Destruct ARRAY 
-instead of
+/* 
+  ? Destruct ARRAY 
+* instead of this
     const cities = ["Tokio", "Milan", "Florence", "ETC"];
+* can do this
     const [firstCity, second] = [
         "Tokio", 
         "Milan", 
@@ -11,14 +19,21 @@ instead of
     ];
 */
 
-/*  Destruct PROPRIETIES
-  instead of wising 'props' object like 'props.name'
-  can add into function the object itself '{name}'
+/*  
+? Destruct PROPRIETIES
+  -> instead of using 'props' object like 'props.name'
+  -> can add into function the object itself '{name}'
 */
+
+// create the function called Hooks(obj)
 function Hooks({name}) {
+  // create vars and give them an useState with a default value
+  // that can be set to other states
   const [emotion, setEmotion] = useState("scared");
   const [secondary, setSecondary] = useState("energic");
 
+  // useEffect(<function>) -> Runs on every render
+  // useEffect(<function>, <dependency>) -> Runs only on the first render if second value is empty
   useEffect( () => {
     console.log(`I'm ${emotion} right now`);
   }, [emotion]);
