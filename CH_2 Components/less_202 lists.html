@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REACT Less 202 | LISTS</title>
+
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <!-- BABEL A JS COMPILER FROM TAGGED BASE TO CODE -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header{
+            width: 100%;
+            background-color: #dddddd;
+        }
+        header div{
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header div ul{
+            width: 100%;
+            list-style: none;
+            text-transform: uppercase;
+
+            display: flex;
+            justify-content: space-around;
+        }
+        .content{
+            width: 80%;
+            min-height: 60vh;
+            margin: 0 auto;
+        }
+        footer{
+            width: 100%;
+            background-color: #dddddd;
+        }
+        footer div{
+            width: 80%;
+            margin: 0 auto;
+        }
+        h1{
+            text-align: center;
+        }
+        .app{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div id="body"></div>
+    <!-- All these it has to render into an element 
+        it is discrouraged to render into body directly -->
+    <script type="text/babel">
+        /* create component as a function */
+        function Header() {
+            return (
+                <header>
+                    <div>
+                        <h1>LOGO</h1>
+                        <nav>
+                            <ul>
+                                <li>Menu 1</li>
+                                <li>Menu 2</li>
+                                <li>Menu 3</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
+            )
+        }
+        
+        function Main(props) {
+            return(
+                <section className="content">
+                    <h1>{props.name}'s Shop</h1>
+                    <div>
+                        <h2>Categories</h2>
+                        <ul>
+                            {
+                            props.categories.map((category) => (
+                                <li key={category.id}> {category.title} </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                </section>
+            );
+        }
+        function Footer(props) {
+
+            return(
+                <footer>
+                    <div>
+                        <h3>This website was made with {props.adj}</h3>
+                        <p>Copyright {props.year}</p>
+                    </div>
+                </footer>
+            );
+        }
+
+
+        const categories = [
+            'Kitchen',
+            'Living Room',
+            'Mechanic',
+            'Garden',
+            'Computers',
+            'mobiles'
+        ]
+        //because REACT wants a key for arrays that could be used in the future i can't
+        //use an index 'cause array content could be in an other order
+        //instead i can TRANSFORM INTO OBJECT
+        const categoryObject = categories.map((category, i) => ({
+            id: i,
+            title: category,
+        })) 
+
+        function App() {
+            return (
+            <div className="app">
+                <Header />
+                <Main name="Andy" categories={categoryObject}/>
+                <Footer adj="Love" year={new Date().getFullYear()} />
+            </div>
+            );
+        }
+        ReactDOM.render(
+            /*  Can be done like this but is 
+                better using an APP component to add all in         
+            <div>
+                <Header />
+                <Main />
+            </div> 
+            */
+           <App />,
+            document.querySelector('#body')
+        )
+    </script>
+</body>
+</html>
